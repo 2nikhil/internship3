@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/bootstrap.min.js" ></script>
+      <link rel="stylesheet"  href="css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="css/mi_front_end.css">
+      <script src="js/sweetalert.min.js"></script> 
+      <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+      <link rel="shortcut icon" type="image" href="images/favicon.ico">
+      <script src="js/jquery.sticky.js"></script>
+      <title>Asset Management</title>
+   </head>
+   <body onload="getrequest()">
+      <div id="styling" >
+         <div style="cursor:pointer;position:absolute" onclick="redirect()">
+            <img src="images/homepic.png" style="height:60px;width:60px;position:absolute">
+            <h2 style="color:white;margin-left:70px">MobileIron</h2>
+         </div>
+         <script>
+            function redirect(){
+              location.href="file:///C:/Users/intern/workspace/mi_asset-management/WebContent/mi_front_end.html";
+            }
+         </script>
+         <div id="button_area" style="float:right;margin-top:20px">
+            <h1 style="margin-left:500px;color:white;margin-top:0px;padding:-100px;position:absolute">Asset Management</h1>
+            <button type="button" class="btn btn-danger button" id="delete" onclick="delete_request()" style="float:right;margin-bottom:4px;">Delete</button>
+            <button type="button" class="btn btn-info" id="update" style="float:right;margin-bottom:10px;margin-right:4px;" onclick="calling_update()" >Update</button>
+            <button type="button" class="btn btn-warning" name="delete-selected" id="delete-selected" style="display:none;float:right;margin-bottom:4px;" onclick="final_delete()" >Proceed deleting</button>
+            <button type="button" class="btn btn-default" style="display:none;float:right;margin-right:5px;margin-bottom:4px;" id='back' onclick=location.reload()>back</button>
+            <button type="button" class="btn btn-success"  class="button" id="add_button" style="float:right;margin-right:5px;margin-bottom:4px;">Add Asset</button>
+         </div>
+         <div style="float:right;margin:10px" >
+            <input type="text" name="search" id="search" style="float:right;margin-top:80px;" placeholder="search" onkeypress="handle(event)">
+            <select style="float:right;margin-top:80px;height:25px;" id="filter">
+               <option selected="selected">assetnumber</option>
+               <option>color</option>
+               <option>department</option>
+               <option>device_type</option>
+            </select>
+         </div>
+      </div>
+      <div class="container" style="margin-top:100px;">
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+         <script src="js/mi_asset-management.js"></script>
+         <script type="text/javascript">
+            document.getElementById("add_button").onclick = function () {
+                location.href = "file:///C:/Users/intern/workspace/mi_asset-management/WebContent/add-assets.html";
+            };
+         </script>
+         <h3 >List of currently available devices </h3>
+         <br>
+         <table class="table table-bordered" id="fill">
+            <thead id="thead">
+               <tr id="select_all">
+                  <th class="th">Asset Number</th>
+                  <th class="th">allowed upgrade</th>
+                  <th class="th">color</th>
+                  <th class="th">MDT no</th>
+                  <th class="th">IMEI</th>
+                  <th class="th">department</th>
+                  <th class="th">device type</th>
+                  <th class="th">is head qrts or not</th>
+                  <th class="th">is rooted or jail broken</th>
+                  <th class="th">manufacturer</th>
+                  <th class="th">comments</th>
+               </tr>
+            </thead>
+            <tbody >
+            </tbody>
+         </table>
+      </div>
+      <div id="update_input_fields" style="visibility: hidden;margin-top:30px;margin-bottom:40px;background-color: white;">
+         <div id="elements">
+            <button type="button" class="btn btn-danger" style="float:right;" onclick="close_update_input_fields_div()">close</button>
+            <br>
+            <br>
+            <p><label>Enter Asset Number &nbsp;&nbsp; </label><input type="text" name="asset_number" id="update_asset_number" style="width:300px;height:35px;">
+               <button type="button" class="btn btn-warning" id="Go" onclick="fetch_update_fields()" style="margin-left:15px;">Go</button>
+            </p>
+         </div>
+         <br>
+         <br>
+         <br>
+      </div>
+      <script src="js/mi_asset-management.js"></script>
+   </body>
+</html>

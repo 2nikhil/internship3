@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Add and delete
+	</title>
+
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/bootstrap.min.js" ></script>
+<script src="js/mi_asset-management.js"></script>
+<script src="js/bootstrap.min.js" ></script>
+
+<link rel="stylesheet"  href="css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/add-assets.css">
+<link rel="stylesheet" type="text/css" href="css/mi_front_end.css">
+</head>
+<body>
+
+
+<div id="styling">
+<div style="cursor:pointer" onclick="redirect()">
+<img src="images/homepic.png">
+</div>
+
+<script>
+	function redirect(){
+		location.href="file:///C:/Users/intern/workspace/mi_asset-management/WebContent/mi_front_end.html";
+	}
+</script>
+
+
+
+<div id="button_area" style="position:relative">
+
+ <h1  style='padding-left : 400px;display: inline-block;color:white'> Create a new device</h1>
+<button type="button" class="btn btn-danger button" id="delete" onclick="delete_request()" style="float:right;margin-bottom:4px;">Delete</button>
+
+<button type="button" class="btn btn-info" id="update" style="float:right;margin-bottom:10px;margin-right:4px;" onclick="calling_update()" >Update</button>
+
+<button type="button" class="btn btn-warning" name="delete-selected" id="delete-selected" style="display:none;float:right;margin-bottom:4px;" onclick="final_delete()" >Proceed deleting</button>
+
+<button type="button" class="btn btn-default" style="display:none;float:right;margin-right:5px;margin-bottom:4px;" id='back' onclick=location.reload()>back</button>
+
+<button type="button" class="btn btn-success"  class="button" id="add_button" style="float:right;margin-right:5px;margin-bottom:4px;">Add Asset</button>
+
+
+</div>
+
+<!--<div >
+
+<input type="text" name="search" id="search" style="float:right;margin-top:40px;" placeholder="search" onkeypress="handle(event)">
+<select style="float:right;margin-top:40px;width:40px">
+<option>device type</option>
+<option>manufacturer</option>
+</select>
+</div>
+
+-->
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+ 
+    
+
+<form method="post" action="http://localhost:8080/mi_asset-management/rest/assets" id="form" style="margin-top:120px;">
+<h3 class="header"> Asset details </h3>
+<div class="contents">
+
+<p>
+<label>Asset number: </label>   <input type="text"  class="input" name="assetnumber">
+</p>
+
+<p>
+<label>Color: </label>          <input type="text"  class="input" name="color" >
+</p>
+
+<!--
+<p>
+<label>device purchase date:</label> <input type="text"  class="input" name="device_purchasedate">
+</p>
+-->
+
+<p>
+<label>Is headquarters device:</label> <input type="text"   class="input" name="isheadquarters">
+</p>
+</div>
+
+<br>
+<br>
+
+<h3 class="header" >Device Status</h3>
+<div class="contents">
+
+<p>
+<label>Allowed upgrade or not :</label> <input type="text" class="input" name="allowedupgradeornot">
+</p>
+
+<p>
+<label>device type: </label> <input type="text"  class="input" name="devicetype">
+</p>
+
+<p>
+<label>is rooted or jail broken device:</label> <input type="text"  class="input" name="isrootedorjailbroken">
+</p>
+
+<p>
+<label>department</label><input type="text" class="input" name="department">
+</p>
+
+</div>
+
+
+<br>
+<br>
+
+<h3 class="header"> Manufaturer details</h3>
+<div class="contents">
+
+<p>
+<label>manufacturer: </label> <input type="text"  class="input" name="manufacturer">
+</p>
+
+<p>
+<label>MDI_no:</label> <input type="text"  class="input" name="MDT_no">
+</p>
+
+<p>
+<label>model_no: </label> <input type="text"  class="input" name="modelnumber">
+</p>
+
+<p>
+<label>IMEI:</label> <input type="text"  class="input" name="IMEI">
+</p>
+
+
+</div>
+
+<h3 class="header"> Comments </h3>
+<textarea rows='10' cols='70' id="text-comments" name="comments">
+	
+</textarea>
+<br>
+<br>
+<!--<button type="button" class="btn btn-success btn-lg" id="submit">Submit</button> -->
+
+<input type="submit" value="submit" class="button" >
+
+<br>
+<br>
+
+</form>
+
+
+</body>
+</html>

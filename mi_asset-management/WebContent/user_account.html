@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		asset detail
+	</title>
+
+	  <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/bootstrap.min.js" ></script>
+      <link rel="stylesheet"  href="css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="css/mi_front_end.css">
+      <script src="js/sweetalert.min.js"></script> 
+      <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+      <link rel="shortcut icon" type="image" href="images/favicon.ico">
+      <script src="js/jquery.sticky.js"></script>
+
+	
+</head>
+<body onload="user_account_asset('2')">
+
+ <h2 style="margin-left:355px;"> you hold the following devices </h2>
+ <table class="table table-bordered" id="fill" style="margin-top:40px;margin-left:4px;margin-right:4px;">
+            <thead id="thead">
+               <tr id="select_all">
+                  <th class="th">Asset Number</th>
+                 
+                  <th class="th">color</th>
+                  <th class="th">Start Date</th>
+                  <th class="th">End Date</th>
+                 
+                  <th class="th">device type</th>
+           
+                  <th class="th">is rooted or jail broken</th>
+                  <th class="th">manufacturer</th>
+                  <th class="th">Cancel </th>
+               </tr>
+            </thead>
+            <tbody >
+            </tbody>
+         </table>
+
+<script type="text/javascript">
+function  user_account_asset(user_id) {
+
+
+    var name1, name2, name3,name4,name5,name6,name7,name8;
+//----------here if the first record is null for few columns then undefined(since no values are being given) is being placed, instead of that null value should be given 
+ 
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/mi_asset-management/rest/assets/user_account/"+user_id,
+        cache: false,
+        dataType: "xml",
+        success: function(xml) {
+            $(xml).find('assets_infoes').each(function() {
+                $(this).find("Assets_info").each(function() {
+
+                    $(this).find("_asset_number").each(function() {
+                        name1 = $(this).text();
+
+                    });
+
+
+
+                    $(this).find("_color").each(function() {
+                        name2 = $(this).text();
+
+
+                    });
+                   
+
+                   $(this).find("_startdate").each(function() {
+                        name3 = $(this).text();
+
+                    });
+
+
+                  $(this).find("_end_date").each(function() {
+                        name4 = $(this).text();
+
+                    });
+
+                    $(this).find("_device_type").each(function() {
+                        name5 = $(this).text();
+
+
+                    });
+ 
+
+                    $(this).find("_is_rooted_or_jail_broken").each(function() {
+                        name6 = $(this).text();
+
+
+                    });
+
+
+                    $(this).find("_manufacturer").each(function() {
+                        name7 = $(this).text();
+
+
+                    });
+
+                   
+                  var cancel='<button type="button" onclick="cancel_reservation(\''+name1+'\')" class="btn btn-primary" >Cancel</button>';
+
+                    $("#fill").append('<tbody><tr name="table_rows"><td>' + name1 + '</td>+<td>' + name2 + '</td>+<td>' + name3 + '</td>+<td>' + name4 + '</td>+<td>' + name5 + '</td>+<td>' + name6 + '</td>+<td>' + name7 + '</td><td>'+cancel+'</td></tr></tbody>')
+                    name3 = name1 = name4 = name5 = name6 = name7 = name2="";
+
+
+                });
+
+            });
+        }
+    });
+
+}
+
+function cancel_reservation(name1){
+
+
+       swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover deleted fields",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function() {
+        swal("unreserved!", "Selected assets are unreserved", "success");
+
+
+       $.ajax({
+        type: "DELETE",
+        url: "http://localhost:8080/mi_asset-management/rest/assets/cancel/" + name1,
+        cache: false,
+        dataType: "xml",
+        success: function(xml) {
+            location.reload();
+        }
+    });
+});
+}
+
+
+</script>
+
+</body>
+</html>
